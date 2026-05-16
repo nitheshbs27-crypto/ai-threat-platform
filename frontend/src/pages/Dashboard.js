@@ -10,7 +10,9 @@ function Dashboard() {
 
   const loadAlerts = async () => {
     try {
-      const res = await axios.get('http://127.0.0.1:8000/alerts');
+      const res = await axios.get(
+        'https://ai-threat-backend-drse.onrender.com/alerts'
+      );
       setAlerts(res.data);
     } catch (error) {
       console.log(error);
@@ -18,12 +20,8 @@ function Dashboard() {
   };
 
   const totalThreats = alerts.length;
-  const criticalThreats = alerts.filter(
-    (item) => item.severity === 'Critical'
-  ).length;
-  const highThreats = alerts.filter(
-    (item) => item.severity === 'High'
-  ).length;
+  const criticalThreats = alerts.filter((item) => item.severity === 'Critical').length;
+  const highThreats = alerts.filter((item) => item.severity === 'High').length;
 
   return (
     <div style={{ padding: '50px' }}>
@@ -52,7 +50,6 @@ function Dashboard() {
         {alerts.map((item, index) => (
           <div key={index} style={alertCard}>
             <h2 style={{ color: '#00ff99' }}>🚨 Threat Alert</h2>
-
             <p><b>IP:</b> {item.ip}</p>
             <p><b>Threat:</b> {item.threat_type}</p>
             <p><b>Severity:</b> {item.severity}</p>

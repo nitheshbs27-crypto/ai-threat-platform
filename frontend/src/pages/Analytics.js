@@ -32,7 +32,9 @@ function Analytics() {
 
   const loadAnalytics = async () => {
     try {
-      const res = await axios.get('http://127.0.0.1:8000/analytics');
+      const res = await axios.get(
+        'https://ai-threat-backend-drse.onrender.com/analytics'
+      );
 
       setLabels(res.data.labels);
       setValues(res.data.values);
@@ -87,10 +89,7 @@ function Analytics() {
 
       <button
         onClick={loadAnalytics}
-        style={{
-          padding: '10px 20px',
-          marginBottom: '20px'
-        }}
+        style={{ padding: '10px 20px', marginBottom: '20px' }}
       >
         Refresh Analytics
       </button>
