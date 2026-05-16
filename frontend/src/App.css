@@ -1,0 +1,33 @@
+body {
+  margin: 0;
+  background-color: #050505;
+  color: #ffffff;
+  font-family: Arial, sans-serif;
+}
+
+input {
+  background-color: #111827;
+  color: white;
+  border: 1px solid #00ff99;
+  border-radius: 6px;
+}
+
+button {
+  background-color: #00ff99;
+  color: black;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+}
+
+button:hover {
+  background-color: #00cc77;
+}
+
+h1 {
+  color: #00ff99;
+}
+
+hr {
+  border: 1px solid #1f2937;
+}

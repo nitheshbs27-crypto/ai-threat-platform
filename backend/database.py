@@ -1,0 +1,50 @@
+from pymongo import MongoClient
+
+client = MongoClient("mongodb://localhost:27017")
+
+db = client["threat_intelligence"]
+
+alerts_collection = db["alerts"]
+
+alerts = [
+
+    {
+        "ip": "192.168.1.100",
+        "threat_type": "Brute Force",
+        "severity": "Critical",
+        "score": 99
+    },
+
+    {
+        "ip": "192.168.1.101",
+        "threat_type": "Malware",
+        "severity": "High",
+        "score": 85
+    },
+
+    {
+        "ip": "192.168.1.102",
+        "threat_type": "Suspicious Login",
+        "severity": "Medium",
+        "score": 60
+    },
+
+    {
+        "ip": "192.168.1.103",
+        "threat_type": "Port Scan",
+        "severity": "Low",
+        "score": 30
+    },
+
+    {
+        "ip": "192.168.1.104",
+        "threat_type": "Phishing",
+        "severity": "Critical",
+        "score": 95
+    }
+
+]
+
+alerts_collection.insert_many(alerts)
+
+print("Multiple Threat Alerts Added Successfully")
