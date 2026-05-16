@@ -19,6 +19,7 @@ app.include_router(auth_router)
 app.include_router(alert_router)
 app.include_router(chatbot_router)
 
+
 @app.get("/")
 def home():
     return {"message": "Backend Running Successfully"}

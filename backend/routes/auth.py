@@ -1,30 +1,29 @@
+import os
+from datetime import datetime
+
 from fastapi import APIRouter
 from jose import jwt
 from pymongo import MongoClient
-from datetime import datetime
 
 router = APIRouter()
 
 SECRET = "SECRET123"
 
-client = MongoClient("mongodb://localhost:27017")
+client = MongoClient(os.getenv("MONGO_URL"))
 db = client["threat_intelligence"]
 alerts_collection = db["alerts"]
 
+
 @router.post("/login")
 def login(data: dict):
-
     email = data["email"]
 
     token = jwt.encode(
-        {
-            "email": email
-        },
+        {"email": email},
         SECRET,
         algorithm="HS256"
     )
 
-    # Create different threat based on email text
     if "critical" in email:
         severity = "Critical"
         score = 99

@@ -1,10 +1,11 @@
+import os
+
 from fastapi import APIRouter
 from pymongo import MongoClient
-from bson import ObjectId
 
 router = APIRouter()
 
-client = MongoClient("mongodb://localhost:27017")
+client = MongoClient(os.getenv("MONGO_URL"))
 db = client["threat_intelligence"]
 alerts_collection = db["alerts"]
 
@@ -22,7 +23,6 @@ def alerts():
 
 @router.get("/analytics")
 def analytics():
-
     alerts_data = list(alerts_collection.find())
 
     critical = 0
@@ -31,18 +31,14 @@ def analytics():
     low = 0
 
     for alert in alerts_data:
-
         severity = alert.get("severity", "Low")
 
         if severity == "Critical":
             critical += 1
-
         elif severity == "High":
             high += 1
-
         elif severity == "Medium":
             medium += 1
-
         else:
             low += 1
 
